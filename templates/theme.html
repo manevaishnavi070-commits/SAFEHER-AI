@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Theme</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="auth-page" id="themeBody">
+
+<div class="account-container">
+
+<h2>🎨 Theme Settings</h2>
+
+<p>Select your favourite theme.</p>
+
+<button onclick="setTheme('dark')">
+🌙 Dark Theme
+</button>
+
+<br><br>
+
+<button onclick="setTheme('light')">
+☀ Light Theme
+</button>
+
+<br><br>
+
+<button onclick="setTheme('purple')">
+💜 Purple Theme
+</button>
+
+<br><br>
+
+<a href="/settings" class="back-btn">
+⬅ Back to Settings
+</a>
+
+</div>
+
+<script>
+
+function setTheme(theme){
+
+localStorage.setItem("theme",theme);
+
+applyTheme();
+
+}
+
+function applyTheme(){
+
+let theme = localStorage.getItem("theme");
+
+if(theme=="light"){
+
+document.body.style.background="#ffffff";
+document.body.style.color="#000000";
+
+}
+
+else if(theme=="purple"){
+
+document.body.style.background="#3d1366";
+document.body.style.color="white";
+
+}
+
+else{
+
+document.body.style.background="#070714";
+document.body.style.color="white";
+
+}
+
+}
+
+applyTheme();
+
+</script>
+
+</body>
+</html>

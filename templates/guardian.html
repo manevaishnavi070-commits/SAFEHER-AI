@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Guardian Mode</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+🛡️ Guardian Mode
+</h1>
+
+
+<p>
+Stay connected with your trusted guardians.
+</p>
+
+
+<h2>
+Guardian Status: Active
+</h2>
+
+<form action="/add_guardian" method="POST">
+
+<input type="text" 
+name="name"
+placeholder="Guardian Name" required>
+
+
+<input type="text"
+name="number"
+placeholder="Guardian Number" required>
+
+
+<input
+type="email"
+name="guardian_email"
+placeholder="Guardian Email"
+required>
+
+<button type="submit">
+    Save Guardian
+</button>
+
+
+
+</form>
+
+{% if guardians %}
+
+<h2>
+Your Guardians
+</h2>
+
+
+{% for guardian in guardians %}
+
+<div class="contact-card">
+
+<div class="contact-info">
+
+<h3>
+👤 {{ guardian[1] }}
+</h3>
+
+<p>
+📞 {{ guardian[2] }}
+</p>
+
+</div>
+
+<div class="contact-action">
+    <a href="/edit_guardian/{{guardian[0] }}">
+        <button>
+            Edit
+        </button>
+    </a>
+
+    <a href="/delete_guardian/{{guardian[0] }}">
+        <button>
+            Delete
+        </button>
+    </a>
+
+</div>
+</div>
+
+{% endfor %}
+
+
+{% else %}
+
+<p>
+No guardians added yet.
+</p>
+
+{% endif %}
+
+
+<br><br>
+
+
+<a href="/dashboard">
+
+<button>
+Back To Dashboard
+</button>
+
+</a>
+
+
+</div>
+
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - SafeHer AI</title>
+
+    <style>
+       body{
+            font-family: Arial, sans-serif;
+            background:#09091A;  
+            margin:0;
+            padding:0;
+        }
+
+        .container{
+             width:450px;
+             margin:40px auto;
+             background:#14142B;
+             padding:30px;
+             border-radius:12px;
+             box-shadow:0 5px 20px rgba(128,0,255,.3);
+        }
+
+        h2{
+    text-align:center;
+    color:#8B5CF6;
+}
+
+        label{
+    color:white;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    background:#232344;
+    color:white;
+    border:1px solid #444;
+    border-radius:6px;
+}
+
+       button{
+    width:100%;
+    padding:12px;
+    background:#7C3AED;
+    color:white;
+    border:none;
+    border-radius:6px;
+}
+
+button:hover{
+    background:#6D28D9;
+}
+
+.back-container{
+    text-align:center;
+    margin-top:25px;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:12px 25px;
+    background:#7C3AED;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#6D28D9;
+    transform:translateY(-2px);
+}
+
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>👤 My Profile</h2>
+
+<form action="/update_profile" method="POST">
+
+<label>Full Name</label>
+<input type="text" name="fullname" value="{{ user[0] }}">
+
+<label>Email</label>
+<input type="email" name="email" value="{{ user[1] }}">
+
+<label>Phone</label>
+<input type="text" name="phone" value="{{ user[2] }}">
+
+<label>Age</label>
+<input type="text" name="age" value="{{ user[3] }}">
+
+<label>Address</label>
+<input type="text" name="address" value="{{ user[4] }}">
+
+<button type="submit">Update Profile</button>
+
+</form>
+
+<div class="back-container">
+    <a href="/dashboard" class="back-btn">
+         Back to Dashboard
+    </a>
+</div>
+
+</div>
+
+</body>
+</html>

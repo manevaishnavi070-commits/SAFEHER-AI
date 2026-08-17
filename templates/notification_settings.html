@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Notification Settings - SafeHer AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="auth-page">
+
+<div class="account-container">
+
+    <div class="brand">
+
+        <img src="{{ url_for('static', filename='images/logo.jpeg') }}">
+
+        <h1>SafeHer AI</h1>
+
+    </div>
+
+    <h2>🔔 Notification Settings</h2>
+
+
+    <form action="{{ url_for('save_notifications') }}" method="POST">
+
+
+        <!-- SOS Alert -->
+
+        <div class="setting-row">
+
+            <div>
+                <strong>🚨 SOS Alerts</strong>
+                <p>Receive alerts when an SOS is triggered.</p>
+            </div>
+
+            <label class="switch">
+
+                <input type="checkbox"
+                       name="sos_alert"
+                       {% if settings[0] %}checked{% endif %}>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <!-- Battery Alert -->
+
+        <div class="setting-row">
+
+            <div>
+                <strong>🔋 Battery Alerts</strong>
+                <p>Receive alerts when the device battery is low.</p>
+            </div>
+
+            <label class="switch">
+
+                <input type="checkbox"
+                       name="battery_alert"
+                       {% if settings[1] %}checked{% endif %}>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <!-- Location Alert -->
+
+        <div class="setting-row">
+
+            <div>
+                <strong>📍 Location Alerts</strong>
+                <p>Allow location-related safety notifications.</p>
+            </div>
+
+            <label class="switch">
+
+                <input type="checkbox"
+                       name="location_alert"
+                       {% if settings[2] %}checked{% endif %}>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <button type="submit" class="save-btn">
+            💾 Save Settings
+        </button>
+
+    </form>
+
+
+    <a href="{{ url_for('settings') }}" class="back-btn">
+        ⬅ Back to Settings
+    </a>
+
+</div>
+
+</body>
+</html>

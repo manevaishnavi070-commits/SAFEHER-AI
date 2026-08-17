@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>SOS Activated</title>
+
+<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+
+</head>
+
+
+<body>
+
+
+<div class="sos-box">
+
+
+<h1>🚨 SOS Activated</h1>
+
+<p>
+Emergency alert has been generated.
+</p>
+
+<p>
+Your trusted contacts will be notified.
+</p>
+
+{% if guardians %}
+
+<p>
+🛡️ Your guardians will be notified.
+</p>
+
+{% else %}
+
+<p>
+⚠️ No guardians added yet.
+</p>
+
+{% endif %}
+
+
+<a href="{{ url_for('dashboard') }}">
+
+<button>
+Back To Dashboard
+</button>
+
+</a>
+
+
+</div>
+
+
+</body>
+
+</html>

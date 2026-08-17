@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Create Account</h1>
+
+    <form method="POST">
+
+        <input type="text"
+               name="fullname"
+               placeholder="Full Name">
+
+        <input type="email"
+               name="email"
+               placeholder="Email">
+
+        <input type="password"
+               name="password"
+               placeholder="Password">
+
+        <button type="submit">
+            Sign Up
+        </button>
+
+    </form>
+
+
+    <!-- ERROR MESSAGE -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+
+        <div class="error-container">
+
+            <p class="error-message">
+                {{ message }}
+            </p>
+
+            <a href="/login">
+                <button type="button">
+                    Go To Login
+                </button>
+            </a>
+
+        </div>
+
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+</div>
+
+</body>
+</html>

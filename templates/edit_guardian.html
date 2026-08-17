@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Edit Guardian - SafeHer AI</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="brand">
+
+<img src="{{ url_for('static', filename='images/logo.jpeg') }}">
+
+<h1>SafeHer AI</h1>
+
+</div>
+
+
+<h2>Edit Guardian</h2>
+
+
+<form method="POST">
+
+
+<input 
+type="text"
+name="name"
+value="{{ guardian[0] }}"
+required>
+
+
+<input 
+type="text"
+name="number"
+value="{{ guardian[1] }}"
+required>
+
+
+<button type="submit">
+Save Changes
+</button>
+
+
+</form>
+
+
+<br>
+
+
+<a href="/guardian">
+
+<button>
+Back To Guardian
+</button>
+
+</a>
+
+
+</div>
+
+
+</body>
+
+</html>

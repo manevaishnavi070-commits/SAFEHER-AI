@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SafeHer AI | Smart Women's Safety</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="home-navbar">
+
+    <div class="home-brand">
+        <img src="{{ url_for('static', filename='images/logo.jpeg') }}">
+        <span>SafeHer AI</span>
+    </div>
+
+    <div class="home-links">
+
+        <a href="#" class="active-link">Home</a>
+
+        <a href="#why-safeher">Safety</a>
+
+        <a href="#how-it-works">How It Works</a>
+
+        <a href="#about">About Us</a>
+
+        <a href="/login">
+            <button class="nav-login">Login</button>
+        </a>
+
+        <a href="/signup">
+            <button class="nav-get-started">Get Started</button>
+        </a>
+
+    </div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            🛡️ AI-POWERED WOMEN'S SAFETY
+        </div>
+
+        <h1>
+            Smarter Safety.<br>
+            Stronger Protection.<br>
+            <span>Every Woman, Every Moment.</span>
+        </h1>
+
+        <p>
+            SafeHer AI combines intelligent monitoring, emergency
+            support and real-time protection to help women feel
+            safer wherever they go.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="/signup">
+                <button class="get-started">
+                    Get Started →
+                </button>
+            </a>
+
+            <a href="#features" class="explore-button">
+                <span>▶</span>
+                Explore SafeHer AI
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WHY SAFEHER ================= -->
+
+<section id="why-safeher" class="why-section">
+
+    <div class="section-heading">
+
+        <span>WHY SAFEHER AI</span>
+
+        <h2>
+            More Than Just An SOS Button
+        </h2>
+
+        <p>
+            SafeHer AI is designed to provide support before,
+            during and after a journey.
+        </p>
+
+    </div>
+
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <div class="why-icon">🤖</div>
+            <h3>Intelligent Monitoring</h3>
+            <p>
+                AI Monitoring checks on your safety during
+                an active journey.
+            </p>
+        </div>
+
+
+        <div class="why-card">
+            <div class="why-icon">🚨</div>
+            <h3>Instant Emergency Support</h3>
+            <p>
+                Quickly send an emergency alert when
+                help is needed.
+            </p>
+        </div>
+
+
+        <div class="why-card">
+            <div class="why-icon">📍</div>
+            <h3>Connected Protection</h3>
+            <p>
+                Stay connected with trusted guardians
+                and location-based safety support.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section id="how-it-works" class="how-section">
+
+    <div class="section-heading">
+
+        <span>HOW IT WORKS</span>
+
+        <h2>
+            Your Safety, In Four Simple Steps
+        </h2>
+
+    </div>
+
+
+    <div class="steps-container">
+
+        <div class="step-card">
+
+            <div class="step-number">01</div>
+
+            <h3>Create Your Account</h3>
+
+            <p>
+                Create your SafeHer AI account and
+                set up your trusted safety contacts.
+            </p>
+
+        </div>
+
+
+        <div class="step-line">→</div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">02</div>
+
+            <h3>Start Your Journey</h3>
+
+            <p>
+                Activate AI Monitoring when you
+                begin travelling.
+            </p>
+
+        </div>
+
+
+        <div class="step-line">→</div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">03</div>
+
+            <h3>Stay Connected</h3>
+
+            <p>
+                AI checks your safety while your
+                trusted guardians stay connected.
+            </p>
+
+        </div>
+
+
+        <div class="step-line">→</div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">04</div>
+
+            <h3>Get Help When Needed</h3>
+
+            <p>
+                Emergency support can alert guardians
+                and share your location.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="about-home">
+
+    <div class="about-content">
+
+        <span>ABOUT SAFEHER AI</span>
+
+        <h2>
+            Technology Designed For Safer Journeys
+        </h2>
+
+        <p>
+            SafeHer AI is a women-focused safety platform
+            that brings emergency assistance, AI monitoring,
+            trusted contacts and location-based protection
+            together in one place.
+        </p>
+
+        <p>
+            Our goal is simple — use technology to help women
+            feel more confident, connected and protected.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FINAL CTA ================= -->
+
+<section class="final-cta">
+
+    <h2>
+        Ready To Make Safety Smarter?
+    </h2>
+
+    <p>
+        Take control of your safety with SafeHer AI.
+    </p>
+
+    <a href="/signup">
+        <button class="get-started">
+            Get Started →
+        </button>
+    </a>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="home-footer">
+
+    <div>
+        <strong>🛡 SafeHer AI</strong>
+        <p>Smart technology for safer journeys.</p>
+    </div>
+
+    <p>
+        © 2026 SafeHer AI. All rights reserved.
+    </p>
+
+</footer>
+
+
+</body>
+</html> 

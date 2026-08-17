@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Privacy Settings</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="auth-page">
+
+    <div class="account-container">
+
+        <h2>🔒 Privacy Settings</h2>
+
+        <form action="/save_privacy" method="POST">
+
+            <div class="setting-row">
+
+                <span>Private Profile</span>
+
+                <label class="switch">
+
+                    <input type="checkbox"
+                           name="profile_private"
+                           {% if privacy[0] %}checked{% endif %}>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <span>Share Live Location With Guardians</span>
+
+                <label class="switch">
+
+                    <input type="checkbox"
+                           name="share_location"
+                           {% if privacy[1] %}checked{% endif %}>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <span>Allow Safety Data Collection</span>
+
+                <label class="switch">
+
+                    <input type="checkbox"
+                           name="data_collection"
+                           {% if privacy[2] %}checked{% endif %}>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <button type="submit" class="save-btn">
+                💾 Save Settings
+            </button>
+
+        </form>
+
+
+        <hr>
+
+        <form action="/delete_account" method="POST">
+
+            <button
+                type="submit"
+                class="delete-btn"
+                onclick="return confirm('Are you sure you want to permanently delete your account?');">
+
+                🗑 Delete Account
+
+            </button>
+
+        </form>
+
+
+        <a href="/settings" class="back-btn">
+            ⬅ Back to Settings
+        </a>
+
+    </div>
+
+</body>
+
+</html>

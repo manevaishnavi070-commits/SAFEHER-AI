@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="{{url_for('static',filename='style.css') }}">
+<div class="account-container">
+<h2>👤 Manage Settings</h2>
+
+<form action="/update_account" method="POST">
+
+<label>Full Name</label><br>
+
+<input type="text"
+name="fullname"
+value="{{ user[0] }}"
+required>
+
+<br><br>
+
+<label>Email</label><br>
+
+<input type="email"
+name="email"
+value="{{ user[1] }}"
+required>
+
+<br><br>
+
+<label>Current Password</label>
+
+<input
+type="password"
+name="current_password">
+
+<label>New Password</label>
+
+<input
+type="password"
+name="new_password">
+
+<label>Confirm New Password</label>
+
+<input
+type="password"
+name="confirm_password">
+
+<button type="submit" class="save-btn">
+💾 Save Changes
+</button>
+
+<br><br>
+
+<a href="/settings" class="back-btn">
+⬅ Back to Settings
+</a>
+
+</form>
+    
+</div>

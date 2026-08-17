@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>SafeHer AI Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body onload="window.scrollTo(0,0)">
+
+
+<div class="dashboard">
+
+
+<!-- Navbar -->
+
+<header class="navbar">
+
+
+<div class="brand">
+
+<img src="{{ url_for('static', filename='images/logo.jpeg') }}" 
+alt="SafeHer AI Logo">
+
+<span>SafeHer AI</span>
+
+</div>
+
+<div class="profile-container">
+
+<div class="profile" onclick="openProfileMenu()">
+
+👤 {{ user[0] }} ▼
+
+</div>
+
+
+<div id="profileMenu" class="dropdown-menu">
+
+<a href="/profile">
+👤 My Profile
+</a>
+
+<a href="{{ url_for('settings') }}">
+    ⚙️ Settings
+</a>
+
+<a href="/safety_history">
+📜 Safety History
+</a>
+
+<a href="/logout">
+🚪 Logout
+</a>
+
+</div>
+
+</div>
+
+
+</header>
+
+
+
+
+
+
+<!-- Welcome -->
+
+<section class="welcome">
+
+
+<h1>
+Welcome Back <span class="wave">👋</span>
+</h1>
+
+
+<p>
+Your AI powered safety companion is active.
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- SOS Section -->
+
+<section class="main-sos">
+
+
+<h2>
+Emergency Protection
+</h2>
+
+
+<div class="sos-card">
+
+
+<h1>
+🚨
+</h1>
+
+
+<h2>
+SOS Emergency
+</h2>
+
+
+<p>
+Send instant emergency alert to your trusted contacts.
+</p>
+
+<form id="sosForm" action="/send_sos" method="POST">
+
+    <button
+        type="button"
+        class="big-sos-btn"
+        onclick="startVoiceSOS()">
+        SOS
+    </button>
+
+</form>
+
+
+
+
+<p id="voiceStatus"></p>
+
+<p class="sos-text">Tap Immediately In Emergency</p>
+
+
+<p id="countdown"></p>
+
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+<!-- AVTIVATE status -->
+
+<section class="status-panel">
+
+<h2>
+🛡️ Safety Status
+</h2>
+
+
+<div class="status-card">
+
+
+
+<p>
+🛡️ Guardians: {{ guardian_count }}
+</p>
+
+
+<p>
+🔋 Battery Status: Checked
+</p>
+
+
+<p>
+📍 Location: Available
+</p>
+
+
+<p>
+🚨 SOS Status: Ready
+</p>
+
+</div>
+
+</section>
+
+
+
+
+
+
+
+
+<!-- Features -->
+
+<section class="feature-container">
+
+
+
+<!-- AI Assistant -->
+
+<div class="feature-card">
+
+<h2>
+🤖 AI Assistant
+</h2>
+
+<p>
+Get AI based safety guidance anytime.
+</p>
+
+<a href="/ai_assistant">
+<button>
+🤖Chat With AI
+</button>
+</a>
+
+</div>
+
+
+
+
+
+<div class="feature-card">
+
+<h2>
+🛡️ Guardian Mode
+</h2>
+
+<p>
+Stay connected with your trusted guardians.
+</p>
+
+<a href="/guardian">
+<button>
+Open Guardian
+</button>
+</a>
+
+</div>
+
+
+
+
+<!-- LIVE location  -->
+
+<div class="feature-card">
+
+<h2>
+📍 Live Location
+</h2>
+
+<p>
+Share real-time location during emergency.
+</p>
+
+<button onclick="getLocation()">
+📍 Track Location
+</button>
+
+<p id="location"></p>
+
+</div>
+
+
+<!-- safe route -->
+
+<div class="feature-card">
+
+<h2>
+🛣️ Safe Route
+</h2>
+
+<p>
+Find safer routes and avoid risky areas.
+</p>
+
+<a href="/safe_route">
+<button>
+Open Safe Route
+</button>
+</a>
+
+</div>
+
+
+
+<!-- BATTERY SESSION  -->
+
+<div class="feature-card">
+
+<h2>
+🔋 Battery Alert
+</h2>
+
+<p>
+Notify emergency contacts when battery is low.
+</p>
+
+<button onclick="checkBattery()">
+ 🔋Check Battery
+</button>
+
+<p id="battery"></p>
+
+</div>
+
+
+<!-- AI-MONITORING -->
+<div class="feature-card">
+
+    <h2>🤖 AI Monitoring</h2>
+
+    <p id="aiStatus">
+
+        {% if ai_status == 1 %}
+            🟢 Status : ON
+        {% else %}
+            🔴 Status : OFF
+        {% endif %}
+
+    </p>
+
+    <button id="aiButton" onclick="toggleAI()">
+
+        {% if ai_status == 1 %}
+            Turn OFF
+        {% else %}
+            Turn ON
+        {% endif %}
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- AI Safety Check -->
+
+<section class="ai-check">
+
+
+<h2>
+🎙️ AI Safety Check
+</h2>
+
+
+<p>Are you safe?</p>
+
+
+<form action="/safety_check" method="POST">
+
+
+<button name="status" value="Safe">
+✅ I am Safe
+</button>
+
+
+<button name="status" value="Need Help">
+🚨 Need Help
+</button>
+
+
+</form>
+
+
+</section>
+
+</div>
+
+
+<!-- Safety Check Popup -->
+<div id="safetyPopup" class="popup">
+
+    <div class="popup-content">
+
+        <h2>⚠️ Safety Check</h2>
+
+        <p>
+            Are you safe?
+            <br>
+            Please confirm your safety.
+        </p>
+
+        <button class="safeBtn" onclick="iAmSafe()">
+            ✅ I'm Safe
+        </button>
+
+        <button class="helpBtn" onclick="needHelp()">
+            🚨 Need Help
+        </button>
+
+    </div>
+
+
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script src="{{ url_for('static', filename='ai_monitoring.js') }}"></script>
+
+
+</body>
+
+</html>

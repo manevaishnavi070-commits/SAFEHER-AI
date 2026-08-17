@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Safe Route - SafeHer AI</title>
+
+    <!-- Safe Route CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='saferoute.css') }}">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="safe-header">
+
+    <div class="brand">
+
+        <img src="{{ url_for('static', filename='images/logo.jpeg') }}"
+             alt="SafeHer AI">
+
+        <span>SafeHer AI</span>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="safe-route-container">
+
+
+    <h1>🛡️ Safe Route</h1>
+
+    <p class="subtitle">
+        Find a safer route and track your journey location in real time.
+    </p>
+
+
+
+    <!-- ================= LOCATION INPUT ================= -->
+
+    <section class="route-search-card">
+
+        <div class="input-group">
+
+            <label for="startLocation">
+                📍 Starting Location
+            </label>
+
+            <input
+                type="text"
+                id="startLocation"
+                placeholder="Leave empty to use your current location"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="destination">
+                🎯 Destination
+            </label>
+
+            <input
+                type="text"
+                id="destination"
+                placeholder="Enter destination"
+            >
+
+        </div>
+
+
+        <div class="route-buttons">
+
+            <button
+                type="button"
+                class="location-btn"
+                onclick="getRouteLocation()">
+
+                📍 Get My Location
+
+            </button>
+
+
+            <button
+                type="button"
+                class="route-btn"
+                onclick="showDestination()">
+
+                🛣️ Show Safe Route
+
+            </button>
+
+        </div>
+
+
+        <div id="routeLocation" class="location-display">
+
+            📍 Current location not detected
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= MAP ================= -->
+
+    <section class="map-card">
+
+        <div class="map-header">
+
+            <h2>🗺️ Live Map</h2>
+
+            <span class="live-badge">
+                ● LIVE
+            </span>
+
+        </div>
+
+
+        <div id="map"></div>
+
+    </section>
+
+
+
+    <!-- ================= ROUTE INFO ================= -->
+
+    <section class="route-info-card">
+
+        <h2>🛣️ Route Information</h2>
+
+        <div id="routeInfo">
+
+            Enter a destination to calculate your route.
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= LIVE TRACKING ================= -->
+
+    <section class="tracking-card">
+
+        <h2>📍 Live Journey Tracking</h2>
+
+        <div id="journeyStatus">
+
+            <p id="journeyText">
+                Waiting for route...
+            </p>
+
+        </div>
+
+        <div class="journey-buttons">
+
+        <button 
+            type="button"
+            class="start-journey-btn"
+            onclick="startJourney()">
+
+            🚗 Start Journey
+
+        </button>
+
+        <button
+            type="button"
+            class="end-journey-btn"
+            onclick="endJourney()"
+            disabled>
+
+            🛑 End Journey
+
+        </button>
+
+        </div>
+
+
+        <div class="tracking-status">
+
+            <span class="tracking-dot"></span>
+
+            <span>
+                Live location tracking
+            </span>
+
+        </div>
+
+
+        <p id="progressText">
+            Get your location to start tracking.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⏳
+            </div>
+
+            <h3>Estimated Time</h3>
+
+            <p id="remainingTime">
+                --
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📏
+            </div>
+
+            <h3>Remaining Distance</h3>
+
+            <p id="remainingDistance">
+                --
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= SAFETY SCORE ================= -->
+
+    <section class="safety-card">
+
+        <h2>🤖 AI Safety Score</h2>
+
+        <div id="safetyScore">
+            --
+        </div>
+
+        <p id="riskLevel">
+            Waiting for route...
+        </p>
+
+        <div id="safetyStatus"
+             class="safety-status">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= NEARBY SERVICES ================= -->
+
+    <section class="services-card">
+
+        <h2>📍 Nearby Services</h2>
+
+
+        <div class="service-grid">
+
+
+            <button
+                class="service-item"
+                onclick="findNearbyPolice()">
+
+                <span class="service-icon">
+                    🚔
+                </span>
+
+                <span>
+                    Nearby Police
+                </span>
+
+                <span class="service-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="service-item"
+                onclick="findNearbyHospital()">
+
+                <span class="service-icon">
+                    🏥
+                </span>
+
+                <span>
+                    Nearby Hospital
+                </span>
+
+                <span class="service-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= EMERGENCY ================= -->
+
+    <section class="emergency-card">
+
+        <h2>🚨 Emergency Actions</h2>
+
+
+        <div class="emergency-buttons">
+
+
+            <button
+                onclick="callGuardian()"
+                class="guardian-btn">
+
+                👨‍👩‍👧 Call Guardian
+
+            </button>
+
+
+
+            <button
+                onclick="callPolice()"
+                class="police-btn">
+
+                👮 Call Police (112)
+
+            </button>
+
+
+
+            <button
+                onclick="sendQuickSOS()"
+                class="sos-btn">
+
+                🆘 Send Quick SOS
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+</main>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+<!-- Leaflet Routing Machine -->
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+
+
+
+<!-- Back to Dashboard -->
+
+<div class="back-dashboard">
+    <a href="{{ url_for('dashboard') }}">
+        ← Back to Dashboard
+    </a>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script src="{{ url_for('static', filename='ai_monitoring.js') }}"></script>
+</body>
+
+</html>

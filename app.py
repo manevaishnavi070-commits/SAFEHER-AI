@@ -3,8 +3,10 @@ import sqlite3
 import smtplib
 import os
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
 from google import genai
 app = Flask(__name__)
+load_dotenv()
 
 
 # Gemini API Configuration

@@ -33,7 +33,10 @@ def create_database():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         fullname TEXT,
         email TEXT UNIQUE,
-        password TEXT
+        password TEXT,
+        phone TEXT,
+        age INTEGER,
+        address TEXT
     )
     """)
 
